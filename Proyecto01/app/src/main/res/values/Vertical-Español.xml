@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="saludo">Hola Mundo - Vertical</string>
+    <color name="mi_color_fondo">#FFFFFF</color> <color name="mi_color_texto">#000000</color> ```
+</resources>
