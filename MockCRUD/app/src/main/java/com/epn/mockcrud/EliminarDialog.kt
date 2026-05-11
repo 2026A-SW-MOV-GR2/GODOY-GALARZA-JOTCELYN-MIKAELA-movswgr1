@@ -21,6 +21,7 @@ fun EliminarDialog(
         text  = { Text("Se eliminará '${item.titulo}'. Esta acción no se puede deshacer.") },
         confirmButton = {
             TextButton(onClick = {
+                val titulo = item.titulo  // ← guarda el título primero
                 onConfirmar()
                 // Toast nativo de Android, llamado directamente desde Compose
                 Toast.makeText(context, "\"${item.titulo}\" eliminado", Toast.LENGTH_SHORT).show()

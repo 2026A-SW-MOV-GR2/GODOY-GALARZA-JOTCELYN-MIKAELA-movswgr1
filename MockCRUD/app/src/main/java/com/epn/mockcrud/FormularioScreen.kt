@@ -8,6 +8,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import android.widget.Toast
+import androidx.compose.ui.platform.LocalContext
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -20,6 +22,7 @@ fun FormularioScreen(
     var titulo    by remember { mutableStateOf(itemExistente?.titulo    ?: "") }
     var subtitulo by remember { mutableStateOf(itemExistente?.subtitulo ?: "") }
     var activo    by remember { mutableStateOf(false) }
+    val context = LocalContext.current
 
     Scaffold(
         topBar = {
@@ -70,8 +73,9 @@ fun FormularioScreen(
                         titulo    = titulo,
                         subtitulo = subtitulo
                     )
+                    val mensaje = if (itemExistente == null) "\"$titulo\" creado" else "\"$titulo\" actualizado"
                     onGuardar(nuevoItem)
-                },
+                    Toast.makeText(context, mensaje, Toast.LENGTH_SHORT).show()                },
                 modifier = Modifier.fillMaxWidth(),
                 enabled = titulo.isNotBlank()   // desactiva el botón si el título está vacío
             ) {
