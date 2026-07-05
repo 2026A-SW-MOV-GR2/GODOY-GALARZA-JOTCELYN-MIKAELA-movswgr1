@@ -18,8 +18,9 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 
 @Composable
-fun PinCard(pin: Pin, modifier: Modifier = Modifier) {
+fun PinCard(pin: Pin, onClick: () -> Unit = {}, modifier: Modifier = Modifier) {
     Surface(
+        onClick = onClick,
         modifier = modifier.fillMaxWidth(),
         shape = RoundedCornerShape(16.dp)
     ) {
@@ -29,7 +30,6 @@ fun PinCard(pin: Pin, modifier: Modifier = Modifier) {
                 contentDescription = pin.title,
                 modifier = Modifier.fillMaxWidth()
             )
-
             IconButton(
                 onClick = { pin.isLiked = !pin.isLiked },
                 modifier = Modifier
@@ -38,7 +38,7 @@ fun PinCard(pin: Pin, modifier: Modifier = Modifier) {
             ) {
                 Icon(
                     imageVector = if (pin.isLiked) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
-                    contentDescription = if (pin.isLiked) "Quitar de favoritos" else "Agregar a favoritos",
+                    contentDescription = null,
                     tint = if (pin.isLiked) Color.Red else Color.White
                 )
             }
