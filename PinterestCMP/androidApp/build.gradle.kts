@@ -13,7 +13,8 @@ kotlin {
 }
 dependencies {
     implementation(projects.shared)
-    implementation("androidx.compose.material:material-icons-extended")
+    implementation("androidx.compose.material:material-icons-extended:1.6.7")
+
 
     implementation(libs.androidx.activity.compose)
 

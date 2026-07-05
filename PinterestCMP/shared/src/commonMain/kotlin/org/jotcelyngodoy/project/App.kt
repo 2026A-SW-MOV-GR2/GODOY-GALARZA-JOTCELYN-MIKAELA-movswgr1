@@ -22,13 +22,27 @@ import org.jetbrains.compose.resources.painterResource
 import pinterestcmp.shared.generated.resources.Res
 import pinterestcmp.shared.generated.resources.compose_multiplatform
 import androidx.compose.foundation.layout.fillMaxSize
+import coil3.ImageLoader
+import coil3.compose.setSingletonImageLoaderFactory
+import coil3.network.ktor3.KtorNetworkFetcherFactory
+import coil3.request.crossfade
+import io.ktor.client.HttpClient
 
 @Composable
 @Preview
 fun App() {
+    setSingletonImageLoaderFactory { context ->
+        ImageLoader.Builder(context)
+            .components {
+                add(KtorNetworkFetcherFactory(
+                    httpClient = { HttpClient() }
+                ))
+            }
+            .crossfade(true)
+            .build()
+    }
+
     MaterialTheme {
-        Box(modifier = Modifier.padding(16.dp)) {
-            FeedScreen(MockPins.list, modifier = Modifier.fillMaxSize())
-        }
+        FeedScreen(MockPins.list, modifier = Modifier.fillMaxSize())
     }
 }

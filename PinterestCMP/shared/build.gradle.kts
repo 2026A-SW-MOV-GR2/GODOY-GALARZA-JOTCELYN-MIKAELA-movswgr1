@@ -29,6 +29,9 @@ kotlin {
     sourceSets {
         androidMain.dependencies {
             implementation(libs.compose.uiToolingPreview)
+            androidMain.dependencies {
+                implementation("io.ktor:ktor-client-okhttp:3.0.1") // antes era ktor-client-android
+            }
         }
         commonMain.dependencies {
             implementation(libs.compose.runtime)
